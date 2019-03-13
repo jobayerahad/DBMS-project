@@ -2,7 +2,7 @@
 Installation Process
 - Simply download the whole project.
 - Make a Database named "**blog**". Or adjust the configuration in *config/config.php* file. 
-- Create three table's with these SQL below: \n
+- Create three table's with these SQL below: <br />
 **posts Table SQL :**
 ```sql
 CREATE TABLE `blog`.`posts` 

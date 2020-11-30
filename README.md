@@ -1,40 +1,39 @@
-# DBMS-project
-Installation Process
-- Simply download the whole project.
-- Make a Database named "**blog**". Or adjust the configuration in *config/config.php* file. 
-- Create three table's with these SQL below: <br />
-**posts Table SQL :**
-```sql
-CREATE TABLE `blog`.`posts` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
-  `title` VARCHAR(100) NOT NULL , 
-  `body` TEXT NOT NULL , 
-  `image` VARCHAR(150) NOT NULL , 
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
-  `cat_id` INT NOT NULL , 
-  `auth_id` INT NOT NULL , 
-  PRIMARY KEY (`id`)) 
-ENGINE = InnoDB;
+# JA-Blog
+## Download & Installation
+- Download or Clone the repository <br>
+
+**Using Git**
 ```
-**Category Table SQL :**
-```sql
-CREATE TABLE `blog`.`category` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
-  `name` VARCHAR(50) NOT NULL , 
-  PRIMARY KEY (`id`)) 
-ENGINE = InnoDB;
+git clone https://github.com/jobayerahad/ja-blog.git
 ```
-**Author Table SQL :**
-```sql
-CREATE TABLE `blog`.`category` 
-( `id` INT NOT NULL AUTO_INCREMENT , 
-  `name` VARCHAR(50) NOT NULL ,
-  `bio` TEXT NOT NULL , 
-  `email` VARCHAR(100) NOT NULL ,
-  `password` VARCHAR(150) NOT NULL ,
-  `photo` VARCHAR(150) NOT NULL ,
-  PRIMARY KEY (`id`)) 
-ENGINE = InnoDB;
-```
-## That's All. 
-###### Visit my website [Ahad's Blog](http://jobayer.me)
+**Manually** <br>
+
+Download https://github.com/jobayerahad/ja-blog/archive/master.zip <br>
+
+**Installation** 
+- Configure your site settings in *config/config.php* file.
+- Make a **MySQL** Database named according to you configuration.
+- Import `ja-blog.sql` in your database.
+
+You're good to go.
+## Features
+- Responsive Design.
+- Fully Customizable.
+- Layers of security from create account to post blog.
+
+## Roles & Permissions
+1. **Contributor** can aceess dashboard with email & password, draft a post.
+2. **Editor** can aceess dashboard with email & password, publish or draft any post & manage categories.
+3. **Admin** can manage all posts & categories & give roles to other users.
+
+## Usage
+- Admin Login using
+````
+Email : admin@domain.com
+Password : admin
+````
+**Tips** : Change your admin password after first time login
+- First time signed up user will be considered as contributor
+
+## Thank you. 
+###### Visit My Website [Jobayer Ahad](https://www.jobayerahad.com)

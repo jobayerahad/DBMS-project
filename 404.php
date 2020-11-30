@@ -1,24 +1,21 @@
-<?php include('header.php'); ?>
+<?php
+include('layout/header.php');
+include('layout/navbar.php');
+?>
 
-<?php include('inc/navbar.php'); ?>
+<div class="container">
+	<div class="not-found">
 
-<!--Main layout-->
-<main class="mt-5 pt-5">
-    <div class="container">
-        
-        <div class="deep-orange-text text-center font-weight-bold my-5 p-4">
-            <h1 class="display-2">4<i class="far fa-frown"></i>4 !!!</h1>
-            <p class="display-3">Page Not Found</p>
-        </div>
+		<div class="deep-orange-text">
+			<h1>404</h1>
+			<p>Page Not Found</p>
+		</div>
 
-        <a href="/blog" class="cyan-text">
-            <h2 class="text-center display-4 pb-5 mb-5">
-                <i class="fas fa-arrow-left"></i> Back to <i class="fas fa-home"></i>page 
-            </h2>
-        </a>
+		<a href="<?php echo SITE_URL ?>" class="waves-effect waves-light btn light-blue darken-2">
+			<i class="material-icons left">arrow_back</i>Return to Homepage
+		</a>
 
-    </div>
-</main>
-<!--Main layout-->
+	</div>
+</div>
 
-<?php include('footer.php') ?>
+<?php include('layout/footer.php') ?>

@@ -1,0 +1,24 @@
+.auth {
+  background: linear-gradient(
+      135deg,
+      rgba(211, 204, 227, 0.2),
+      rgba(234, 229, 241, 0.2)
+    ),
+    url(https://i.ibb.co/rd97mX2/auth-bg.webp);
+  background-size: cover;
+  min-height: 89.4vh;
+
+  &__container {
+    height: 85vh;
+    display: flex;
+    align-items: center;
+  }
+
+  &__card {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.2);
+    background-color: rgba($color: #ffffff, $alpha: 0.9);
+    padding: 1.5rem 2rem;
+  }
+}

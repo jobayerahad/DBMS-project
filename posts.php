@@ -1,91 +1,69 @@
-<?php  
-    if (!isset($_GET['category']) || $_GET['category'] == null) {
-        header("Location: 404.php");
-    }
-    $category = $_GET['category'];
+<?php
+if (!isset($_GET['category']) || $_GET['category'] == null) {
+	header("Location: 404.php");
+}
+$categoryId = $_GET['category'];
+
+include('layout/header.php');
 ?>
-<?php include('header.php'); ?>
 
-<?php include('inc/navbar.php'); ?>
+<div class="container mt-1">
+	<div class="row">
+		<div class="col l8">
+			<?php
+			$query = "SELECT posts.id, posts.title, posts.body, posts.excerpt, posts.thumbnail
+								FROM posts 
+								INNER JOIN posts_meta ON posts.id = posts_meta.post_id
+								WHERE posts.published = TRUE AND posts_meta.category_id = $categoryId
+								ORDER BY posts_meta.created_at DESC";
+			$posts = $db->select($query);
+			if ($posts) { ?>
+				<div class="row">
+					<?php
+					while ($result = $posts->fetch_assoc()) {
+					?>
+						<div class="col s12">
+							<div class="card horizontal hoverable">
+								<div class="card-image">
+									<img src="<?php echo SITE_URL . $result['thumbnail'] ?>">
+								</div>
 
-<!--Main layout-->
-<main class="mt-5 pt-5">
-    <div class="container">
+								<div class="card-stacked">
+									<div class="card-content">
+										<span class="card-title"><?php echo $result['title'] ?></span>
+										<p>
+											<?php
+											if ($fm->isEmpty($result['excerpt'])) {
+												echo $fm->textShorten($result['body'], 100);
+											} else {
+												echo $fm->textShorten($result['excerpt'], 100);
+											}
+											?>
+										</p>
+									</div>
+									<div class="card-action">
+										<a href="<?php echo SITE_URL . "/post.php?id=" . $result['id'] ?>" class="light-blue-text text-darken-3">Read Full Post</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php
+					} ?>
+				</div>
+			<?php
+			} else { ?>
+				<h3 class="cyan-text text-darken-1 center">No Blog Found!</h3>
+			<?php
+			}
+			?>
+		</div>
 
-        <div class="row my-5">
-            <div class="col-md-9">
-            <?php    
-                $query = "SELECT posts.id, posts.title, posts.body, posts.image, posts.created_at, category.name AS cat, author.name AS auth FROM posts INNER JOIN category ON category.id = posts.cat_id INNER JOIN author ON posts.auth_id = author.id
-                WHERE posts.cat_id = $category ORDER BY created_at DESC";
-                $posts = $db->select($query);
-                if ($posts) {
-                    while ($result = $posts->fetch_assoc()) {
-            ?>
-            <!-- Grid row -->
-            <div class="row wow fadeIn">
+		<aside class="col l4 aside">
+			<?php include('inc/sidebar.php') ?>
+		</aside>
+	</div>
+</div>
 
-                <!-- Grid column -->
-                <div class="col-lg-5">
-
-                    <!-- Featured image -->
-                    <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
-                        <img class="img-fluid" src="admin/<?php echo $result['image']; ?>" 
-                            alt="<?php echo $result['title']; ?>">
-                        <a href="/blog/post.php?id=<?php echo $result['id']; ?>">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-7">
-                    <!-- Category -->
-                    <a href="#!" class="green-text">
-                        <h6 class="font-weight-bold mb-2"><?php echo $result['cat']; ?></h6>
-                    </a>
-                    <!-- Post title -->
-                    <h3 class="font-weight-bold mb-3">
-                        <a href="/blog/post.php?id=<?php echo $result['id']; ?>" class="blue-grey-text">
-                            <strong><?php echo $result['title']; ?></strong>
-                        </a>
-                    </h3>
-                    <!-- Excerpt -->
-                    <p>
-                        <?php echo $fm->textShorten($result['body'], 150); ?>
-                        <!-- Read more button -->
-                    <a href="/blog/post.php?id=<?php echo $result['id']; ?>" class="btn btn-success btn-sm">Read more</a>
-                    </p>
-                    <!-- Post data -->
-                    <p>by <a><strong><?php echo $result['auth']; ?></strong></a>, 
-                        <?php echo $fm->formatDate($result['created_at']); ?>
-                    </p>
-
-                </div>
-                <!-- Grid column -->
-
-            </div>
-            <!-- Grid row -->
-            <hr class="my-3">
-
-            <?php 
-                    }
-                } else { ?>
-                <div class="deep-orange-text text-center font-weight-bold my-5 p-4">
-                    <h1 class="display-2">S<i class="far fa-sad-tear"></i>rry !!!</h1>
-                    <p class="display-3">No Post found in this category</p>
-                </div>
-            <?php }
-            ?>    
-            </div>
-            <div class="col-md-3">
-                <?php include('inc/sidebar.php') ?>
-            </div>
-        </div>
-
-    </div>
-</main>
-<!--Main layout-->
-
-<?php include('footer.php') ?>
+<?php
+include('layout/footer.php');
+?>

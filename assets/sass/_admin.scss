@@ -1,0 +1,21 @@
+.admin {
+  min-height: 88.2vh;
+
+  &__main {
+    padding: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media #{$medium-and-down} {
+      width: 100%;
+    }
+
+    @media #{$medium-and-up} {
+      width: 60rem;
+    }
+
+    @media #{$large-and-up} {
+      width: 70rem;
+    }
+  }
+}

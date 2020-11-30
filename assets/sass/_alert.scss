@@ -1,0 +1,11 @@
+.alert {
+  position: fixed;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);;
+  padding: 0.6rem 1rem;
+}
+
+#alert_close {
+  cursor: pointer;
+}

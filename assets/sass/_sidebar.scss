@@ -1,0 +1,53 @@
+.sidebar {
+  background: linear-gradient(
+      90deg,
+      rgba(15, 32, 39, 0.2),
+      rgba(32, 58, 67, 0.2),
+      rgba(44, 83, 100, 0.2)
+    ),
+    url(https://i.ibb.co/WKBLytC/sidebar-bg.webp);
+  background-size: cover;
+  background-position: center;
+
+  @media #{$medium-and-down} {
+    min-width: 20rem;
+    max-width: 80vw;
+  }
+
+  @media #{$large-and-up} {
+    width: 15rem;
+  }
+
+  &__user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    & img {
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #eceff1;
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  &__item {
+    @media #{$large-and-up} {
+      padding: 1rem;
+    }
+
+    transition: 0.4s;
+
+    &:hover {
+      background-color: rgba(69, 90, 100, 0.4);
+    }
+
+    & a,
+    & i {
+      color: #eceff1 !important;
+    }
+  }
+}
